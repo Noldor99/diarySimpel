@@ -12,5 +12,5 @@ export default defineConfig({
     strictPort: true,
     port: 5173,
   },
-  base: "/diarySimpel",
+  base: "/diarySimpel/",
 })
