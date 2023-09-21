@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:regular,500,600,700&display=swap")
+@import url("https://fonts.googleapis.com/css?family=Roboto:regular,500,600,700&display=swap")
+@import url("https://fonts.googleapis.com/css?family=Manrope:regular,500&display=swap")
+
+$Poppins: "Poppins", sans-serif
+$Roboto: "Roboto", sans-serif
+$Manrope: "Manrope", sans-serif
+
+// color
+$light_f: #fff
+$light_FB: #FBFBFB
+
+$dark_00: #000
+$dark2_1F: #1F1F1F
+
+// $blue_D3: #4A99D3
+// $bluedark_211: rgba(74, 153, 211, 0.1)
+
+// $brown_4A: #D3844A
+
+// border-radius
+$borderRadius: 3px
+
+// box shadow gradient
+$box-shadow: 5px 20px 50px rgba(74, 153, 211, 0.2)
+$linear-gradient: linear-gradient(180.99deg, rgba(255, 255, 255, 0) 6.19%, rgba(100, 181, 246, 0.6) 103.09%)
+
+// Container & Breakpoints
+// @use 'sass:math'
+$w_max: 1440
+$point_zero: 1440
+
+//mixin
+$point_5: 1120
+$point_4: 1024
+$point_3: 768
+$point_2: 520
+$point_1: 360
+// Міксин для скидання стилів кнопки
+@mixin btnReset
+  font-family: inherit
+  outline: none
+  border: none
+  background: none
+  letter-spacing: inherit
+  color: inherit
+  font-size: inherit
+  text-align: inherit
+  padding: 0
+
+@mixin containerGlobal
+  max-width: 1440px
+  margin: 0 auto
+  padding: 0 25px
+  @include breakpoint($point: 2)
+    padding: 0 15px
+
+@mixin paper__rounding
+  border: 1px solid #e0e0e0
+  border-radius: 12px
+  background: #fff
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px 0px
+  padding: 26px
+
+@mixin paper__sharp
+  border: 1px solid #e0e0e0
+  border-radius: 0
+  background: #fff
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px 0px
+  padding: 26px
+
+@mixin typografy__h2
+  font-size: 2.5rem
+
+// breakpoints
+@mixin breakpoint($point)
+  @if $point == zero
+    @media (max-width: ($point_zer + px))
+      @content
+
+  @else if $point == 5
+    @media (max-width: ($point_5 + px))
+      @content
+
+  @else if $point == 4
+    @media (max-width: ($point_4 + px))
+      @content
+
+  @else if $point == 3
+    @media (max-width: ($point_3 + px))
+      @content
+
+  @else if $point == 2
+    @media (max-width: ($point_2 + px))
+      @content
+
+  @else if $point == 1
+    @media (max-width: ($point_1 + px))
+      @content
+
+//font
+
+@mixin adaptiv-font($pcSize,$line, $point, $mobSize)
+  @if $mobSize == 0
+    @if $pcSize<58
+      $mobSize: 24
+      @if $pcSize<46
+        $mobSize: 20
+        @if $pcSize<32
+          $mobSize: 18
+        @if $pcSize<24
+          $mobSize: 15
+        @if $pcSize<18
+          $mobSize: 13
+        @if $pcSize<14
+          $mobSize: 10
+        @if $pcSize<10
+          $mobSize: 6
+    @if 1 + 1 == 2
+      $addSize: $mobSize - $pcSize
+      $addSize2: $point - $w_max
+      $aa: calc(($addSize2) * ($addSize) / (360 - $w-max) + $pcSize)
+      font-size: #{$aa+px}
+      $bb: calc(($aa) * ($line) / $pcSize)
+      line-height: #{$bb+px}
+
+@mixin adaptiv($pcSize, $mobSize)
+  @include adaptiv-font($pcSize,$mobSize,$point_zero,0)
+  @media (max-width: $point_5+px)
+    @include adaptiv-font($pcSize,$mobSize,$point_5,0)
+  @media (max-width: $point_4+px)
+    @include adaptiv-font($pcSize,$mobSize,$point_4,0)
+  @media (max-width: $point_3+px)
+    @include adaptiv-font($pcSize,$mobSize,$point_3,0)
+  @media (max-width: $point_2+px)
+    @include adaptiv-font($pcSize,$mobSize,$point_2,0)
+  @media (max-width: $point_1+px)
+    @include adaptiv-font($pcSize,$mobSize,$point_1,0)
+
+//padding
+@mixin adaptiv-padding($pcSize, $mobSize,$point,$mode)
+  $addSize: $mobSize - $pcSize
+  $addSize2: $point - $w_max
+  $aa: calc(($addSize2)*($addSize)/(360 - $w_max))+$pcSize
+  @if $mode == 1
+    padding-top: #{$aa+px}
+  @if $mode == 2
+    padding-right: #{$aa+px}
+  @if $mode == 3
+    padding-bottom: #{$aa+px}
+  @if $mode == 4
+    padding-left: #{$aa+px}
+
+@mixin adaptivPadding($pcSize, $mobSize,$mode)
+  @include adaptiv-padding($pcSize,$mobSize,$point_zero,$mode)
+  @media (max-width: $point_5+px)
+    @include adaptiv-padding($pcSize,$mobSize,$point_5,$mode)
+  @media (max-width: $point_4+px)
+    @include adaptiv-padding($pcSize,$mobSize,$point_4,$mode)
+  @media (max-width: $point_3+px)
+    @include adaptiv-padding($pcSize,$mobSize,$point_3,$mode)
+  @media (max-width: $point_2+px)
+    @include adaptiv-padding($pcSize,$mobSize,$point_2,$mode)
+  @media (max-width: $point_1+px)
+    @include adaptiv-padding($pcSize,$mobSize,$point_1,$mode)
